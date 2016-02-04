@@ -2,14 +2,14 @@
 
 //set up retrieval from local storage
 function retrieve() {
-  var todoStorage = [];
-  var stored = localStorage.getItem('storageKey');
+  var todos = [];
+  var stored = localStorage.getItem('todo');
 
   //retrieve if anything is stored
   if(stored !== null) {
-    todoStorage = JSON.parse(stored);
+    todos = JSON.parse(stored);
   }
-  return todoStorage;
+  return todos;
 }
 
 function addTodoItem() {
@@ -30,3 +30,5 @@ function addTodoItem() {
 
 //attach addTodoItem to click event
 document.getElementById("create").addEventListener("click", addTodoItem)
+
+
