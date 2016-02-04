@@ -25,10 +25,24 @@ function addTodoItem() {
 
   localStorage.setItem('todoStorageAdd', JSON.stringify(todoStorageAdd));
 
-
+  printItems();
 }
 
 //attach addTodoItem to click event
 document.getElementById("create").addEventListener("click", addTodoItem)
 
+
+function printItems() {
+  var printedItems = retrieve();
+
+  var concatString = '<div>';
+  for (var i = 0; i < printedItems.length; i++){
+
+    //add html elements to reveal todo items, and attach delete button specifying id of each todo
+    concatString +='<div class="todoRow"><p class="todoItems">' + printedItems[i] + '</p><button class="delete warning" id="' + i + '">delete</button></div></div>';
+
+    //print to 'printOut' id
+    document.getElementById('printOut').innerHTML = concatString;
+  }
+}
 
