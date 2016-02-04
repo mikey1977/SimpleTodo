@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <title>Simple Todo</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div class="row">
     <div class="boundaries">
       <div class="small-12 medium-12 large-12 columns">
-      <h1>Simple Todo Maker</h1>
-      <input id="inputItem" value="Type Here">
+      <h1 class="title">Simple Todo Maker</h1>
+      <input id="inputItem" value="Type Here..." onkeypress="runScript(event)">
       <button id="create">Create</button>
 
-      <h2>Todo Items</h2>
       <div id="printOut"></div>
     </div>
     </div>

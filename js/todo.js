@@ -65,6 +65,12 @@ function clear() {
   document.getElementById('inputItem').value = '';
 }
 
+function runScript(e) {
+  if (e.keyCode == 13) {
+    addTodoItem();
+    clear();
+  }
+}
 //attach addTodoItem to click event
 document.getElementById('create').addEventListener('click', addTodoItem);
 document.getElementById('create').addEventListener('click', clear);
