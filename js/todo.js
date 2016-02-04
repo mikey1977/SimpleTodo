@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 //set up retrieval from local storage
 function retrieve() {
@@ -6,31 +6,27 @@ function retrieve() {
   var stored = localStorage.getItem('todoKey');
 
   //retrieve if anything is stored
-  if(stored !== null) {
+  if (stored !== null) {
     todos = JSON.parse(stored);
   }
   return todos;
 }
 
 function addTodoItem() {
-  console.log('working');
+
   //grab entry from input
-  var inputItem = document.getElementById("inputItem").value;
+  var inputItemValue = document.getElementById('inputItem').value;
 
   //access localStorage using retrieve function
   var todoStorageAdd = retrieve();
 
   //append new items to storage
-  todoStorageAdd.push(inputItem);
+  todoStorageAdd.push(inputItemValue);
 
   localStorage.setItem('todoKey', JSON.stringify(todoStorageAdd));
 
   printItems();
 }
-
-//attach addTodoItem to click event
-document.getElementById("create").addEventListener("click", addTodoItem)
-
 
 function printItems() {
   var printedItems = retrieve();
@@ -39,16 +35,16 @@ function printItems() {
   for (var i = 0; i < printedItems.length; i++){
 
     //add html elements to reveal todo items, and attach delete button specifying id of each todo
-    concatString +='<div class="todoRow"><p class="todoItems">' + printedItems[i] + '</p><button class="delete warning" id="' + i + '">delete</button></div></div>';
+    concatString += '<div class="todoRow"><p class="todoItems">' + printedItems[i] + '</p><button class="delete warning" id="' + i + '">delete</button></div></div>';
+  }
 
-    //print to 'printOut' id
-    document.getElementById('printOut').innerHTML = concatString;
+  //print to 'printOut' id
+  document.getElementById('printOut').innerHTML = concatString;
 
-    //attach delete to click event
-    var deleteEachTodo = document.getElementsByClassName('delete');
-    for (var i = 0; i < deleteEachTodo.length; i++){
-      deleteEachTodo[i].addEventListener('click', deleteTodo);
-    }
+  //attach delete to click event
+  var deleteEachTodo = document.getElementsByClassName('delete');
+  for (var j = 0; j < deleteEachTodo.length; j++) {
+    deleteEachTodo[j].addEventListener('click', deleteTodo);
   }
 }
 
@@ -60,6 +56,18 @@ function deleteTodo() {
   localStorage.setItem('todoKey', JSON.stringify(deleteItem));
 
   printItems();
+
+  return false;
 }
+
+//clear input fields after entering
+function clear() {
+  document.getElementById('inputItem').value = '';
+}
+
+//attach addTodoItem to click event
+document.getElementById('create').addEventListener('click', addTodoItem);
+document.getElementById('create').addEventListener('click', clear);
+document.getElementById('inputItem').addEventListener('click', clear);
 
 printItems();
