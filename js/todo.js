@@ -3,7 +3,7 @@
 //set up retrieval from local storage
 function retrieve() {
   var todos = [];
-  var stored = localStorage.getItem('todo');
+  var stored = localStorage.getItem('todoKey');
 
   //retrieve if anything is stored
   if(stored !== null) {
@@ -23,7 +23,7 @@ function addTodoItem() {
   //append new items to storage
   todoStorageAdd.push(inputItem);
 
-  localStorage.setItem('todoStorageAdd', JSON.stringify(todoStorageAdd));
+  localStorage.setItem('todoKey', JSON.stringify(todoStorageAdd));
 
   printItems();
 }
@@ -43,6 +43,23 @@ function printItems() {
 
     //print to 'printOut' id
     document.getElementById('printOut').innerHTML = concatString;
+
+    //attach delete to click event
+    var deleteEachTodo = document.getElementsByClassName('delete');
+    for (var i = 0; i < deleteEachTodo.length; i++){
+      deleteEachTodo[i].addEventListener('click', deleteTodo);
+    }
   }
 }
 
+//create delete function
+function deleteTodo() {
+  var targetById = this.getAttribute('id');
+  var deleteItem = retrieve();
+  deleteItem.splice(targetById, 1);
+  localStorage.setItem('todoKey', JSON.stringify(deleteItem));
+
+  printItems();
+}
+
+printItems();
